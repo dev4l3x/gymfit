@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:xforms="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:listview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:icons="clr-namespace:GymFit.Services.Icons"
+             xmlns:converters="clr-namespace:GymFit.Converters"
+             xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             mc:Ignorable="d"
+             x:Class="GymFit.Views.Ejercicio.DetalleEjercicioPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:CurrentItemToColorConverter x:Key="selectedItemConverter"></converters:CurrentItemToColorConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <graphics:SfGradientView Grid.Row="0">
+                    <graphics:SfGradientView.BackgroundBrush>           
+                        <graphics:SfLinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">                
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Color="{StaticResource AppPurple}" Offset="0.0" />
+                                <graphics:SfGradientStop Color="{StaticResource AppDarkPurple}" Offset="1.0" />
+                            </graphics:SfLinearGradientBrush.GradientStops>                
+                        </graphics:SfLinearGradientBrush>            
+                    </graphics:SfGradientView.BackgroundBrush>
+                </graphics:SfGradientView>
+
+                <StackLayout Padding="40, 40, 40, 40"
+                             Grid.Row="0">
+
+                    <Label Text="{Binding Especificacion.Nombre}"
+                           FontSize="Medium"
+                           FontAttributes="Bold"
+                           TextColor="White"></Label>
+
+                    <Label Text="{Binding Especificacion.Descripcion}"
+                           TextColor="LightGray"
+                           TextType="Html"></Label>
+
+                    <Frame Margin="0, 10, 0, 0" 
+                           BackgroundColor="White"
+                           WidthRequest="300"
+                           HorizontalOptions="Center">
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout>
+                                <Label Text="Musculos principales"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"></Label>
+                                <Label Text="{Binding Especificacion.MusculosPrincipalesAsString}"></Label>
+                            </StackLayout>
+
+                            <BoxView WidthRequest="1"
+                                     Color="LightGray"
+                                     Margin="10, 0, 10, 0"></BoxView>
+                            
+                            <StackLayout>
+                                <Label Text="Musculos secundarios"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"></Label>
+                                <Label Text="{Binding Especificacion.MusculosSecundariosAsString}"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                </StackLayout>
+            </Grid>
+            <AbsoluteLayout HeightRequest="50" >
+                <BoxView BackgroundColor="{StaticResource AppDarkPurple}"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 0.4"
+                         AbsoluteLayout.LayoutFlags="All"></BoxView>
+
+                <buttons:SfButton Text="Añadir serie"
+                                  AbsoluteLayout.LayoutBounds="0.5, 0"
+                                  AbsoluteLayout.LayoutFlags="PositionProportional"
+                                  Style="{StaticResource RoundedButton}"
+                                  BorderColor="White"
+                                  BorderWidth="2"
+                                  Command="{Binding AddSerieEjercicioCommand}"></buttons:SfButton>
+            </AbsoluteLayout>
+
+            <StackLayout Margin="40, 20, 40, 0">
+                <Label Text="Series"
+                           Grid.Row="4"
+                           Grid.Column="0"
+                           Style="{StaticResource Subtitle}"
+                           FontSize="16"></Label>
+
+                    <!--<buttons:SfButton Grid.Column="1"
+                                      Grid.Row="4"
+                                      Text="{x:Static icons:IconsService.Plus}"
+                                      HorizontalOptions="Start"
+                                      Style="{StaticResource RoundedIconButton}"
+                                      FontSize="10"
+                                      Command="{Binding AddSerieEjercicioCommand}">
+
+                    </buttons:SfButton>-->
+                    <listview:SfListView ItemsSource="{Binding NumerosRepeticiones}"
+                                    IsScrollingEnabled="False"
+                                    SelectionBackgroundColor="Transparent"
+                                    x:Name="seriesList"
+                                    AllowSwiping="True"
+                                    SwipeStarted="seriesList_SwipeStarted">
+                        <listview:SfListView.RightSwipeTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalOptions="Fill"
+                                  VerticalOptions="Fill"
+                                  BackgroundColor="{StaticResource AppRed}">
+                                <Label Text="{Static icons:IconsService.Times}"
+                                       FontFamily="{StaticResource FontAwesomeSolid}"
+                                       TextColor="White"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"></Label>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </DataTemplate>
+                    </listview:SfListView.RightSwipeTemplate>
+                    <listview:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal"
+                                         Margin="4"
+                                         >
+                                <BoxView BackgroundColor="{StaticResource AppDarkPurple}"
+                                         WidthRequest="3"></BoxView>
+                                <Label Text="{Binding ., StringFormat='{0} repeticiones'}"
+                                       VerticalOptions="Center"
+                                       FontSize="Small"></Label>
+                            </StackLayout>
+                        </DataTemplate>
+                    </listview:SfListView.ItemTemplate>
+                </listview:SfListView>
+
+                <buttons:SfButton Text="Añadir ejercicio"
+                                  Margin="0, 5, 0, 10"
+                                  HorizontalOptions="Center"
+                                  Style="{StaticResource RoundedButton}"
+                                  WidthRequest="150"
+                                  BackgroundColor="{StaticResource AppDarkPurple}"
+                                  Command="{Binding AddEjercicioCommand}"></buttons:SfButton>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Frame xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="GymFit.CustomControls.MealDiary"
+             xmlns:exp="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
+       xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" Margin="20" Padding="0" CornerRadius="10"
+       xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+       x:Name="mealDiary">
+    <border:SfBorder BorderColor="LightGray" CornerRadius="10">
+    <exp:SfExpander HeaderBackgroundColor="White" VerticalOptions="FillAndExpand" DynamicSizeMode="Content">
+        <exp:SfExpander.Header >
+            <StackLayout Orientation="Horizontal"  VerticalOptions="CenterAndExpand" Padding="0">
+                    <Button  FontAttributes="Bold" TextColor="White" Text="ADD" Command="{Binding Source={x:Reference mealDiary}, Path=AddCommand}" BackgroundColor="{StaticResource AppDarkPurple}" HeightRequest="50" WidthRequest="60"></Button>
+                <StackLayout>
+                    <Label Margin="20,0,0,0" FontAttributes="Bold" VerticalOptions="Center" TextColor="{StaticResource AppDark}" Text="{Binding Source={x:Reference mealDiary}, Path=Title}"></Label>
+                        <Label Margin="20,0,0,0" VerticalOptions="Center" TextColor="{StaticResource AppDark}" Text="{Binding Source={x:Reference mealDiary}, Path=Calories, StringFormat='{0} kcal'}"></Label>
+                </StackLayout>
+            </StackLayout>
+        </exp:SfExpander.Header>
+            <exp:SfExpander.Content >
+                <ListView x:Name="listView"  BackgroundColor="White" RowHeight="80"  VerticalScrollBarVisibility="Never">
+                    
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Eliminar" IsDestructive="True" Clicked="MenuItem_Clicked" CommandParameter="{Binding .}"></MenuItem>
+                                </ViewCell.ContextActions>
+                                <StackLayout Padding="50, 10, 10, 10">
+                                    <Label FontAttributes="Bold" Text="{Binding NombreCantidadKcal}"></Label>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Especificacion.Proteinas, StringFormat='P: {0}'}"></Label>
+                                        <Label Text="{Binding Especificacion.Grasas, StringFormat='G: {0}'}"></Label>
+                                        <Label Text="{Binding Especificacion.Carbohidratos, StringFormat='C: {0}'}"></Label>
+                                        
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                            
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            
+        </exp:SfExpander.Content>
+    </exp:SfExpander>
+    </border:SfBorder>
+</Frame>

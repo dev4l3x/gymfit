@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Frame xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:effects="clr-namespace:GymFit.Effects"
+       mc:Ignorable="d"
+             x:Class="GymFit.CustomControls.RoundedDatePicker" BackgroundColor="Black"
+       x:Name="outerFrame">
+    <Frame BackgroundColor="Black" Padding="0" x:Name="innerFrame" CornerRadius="{Binding Source={x:Reference outerFrame}, Path=CornerRadius}" HeightRequest="50"  VerticalOptions="Center">
+        
+        <DatePicker x:Name="datepicker"  TextColor="Black" FontSize="15" BackgroundColor="Transparent" Focused="datepicker_Focused" Unfocused="datepicker_Unfocused" Margin="0" HeightRequest="50" HorizontalOptions="Center">
+            <DatePicker.Effects>
+                <!--Quita los bordes en UWP y la linea de subrayado de Xamarin.Droid-->
+                <effects:DatePickerWithoutUnderlineEffect></effects:DatePickerWithoutUnderlineEffect>
+            </DatePicker.Effects>
+        </DatePicker>
+    </Frame>
+</Frame>

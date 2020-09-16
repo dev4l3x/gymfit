@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:textInputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             mc:Ignorable="d"
+             x:Class="GymFit.Views.Ejercicio.AddControlEjercicioPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+
+                <graphics:SfGradientView Grid.Row="0">
+                    <graphics:SfGradientView.BackgroundBrush>           
+                        <graphics:SfLinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">                
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Color="{StaticResource AppPurple}" Offset="0.0" />
+                                <graphics:SfGradientStop Color="{StaticResource AppDarkPurple}" Offset="1.0" />
+                            </graphics:SfLinearGradientBrush.GradientStops>                
+                        </graphics:SfLinearGradientBrush>            
+                    </graphics:SfGradientView.BackgroundBrush>
+                </graphics:SfGradientView>
+
+                <Frame Grid.Row="0"
+                       VerticalOptions="Center"
+                       WidthRequest="300"
+                       HorizontalOptions="Center"
+                       CornerRadius="10"
+                       BackgroundColor="White">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Style="{StaticResource Title}"
+                               Text="Registrar pesos"
+                               TextColor="{StaticResource AppDarkPurple}"
+                               Margin="0, 0, 0, 20"
+                               Grid.Row="0"
+                               Grid.ColumnSpan="2"></Label>
+
+
+                       <textInputLayout:SfTextInputLayout Style="{StaticResource InputStyle}"
+                                                          Hint="Serie"
+                                                          Grid.Row="1"
+                                                          Grid.Column="0">
+                           <Picker ItemsSource="{Binding Series}"
+                                   SelectedIndex="{Binding SerieSeleccionada}"></Picker>
+                       </textInputLayout:SfTextInputLayout>
+
+                       <textInputLayout:SfTextInputLayout Style="{StaticResource InputStyle}"
+                                                          Hint="Fecha"
+                                                          Grid.Row="1"
+                                                          Grid.Column="1">
+                           <DatePicker Date="{Binding Fecha}"></DatePicker>
+                       </textInputLayout:SfTextInputLayout>
+
+                        <textInputLayout:SfTextInputLayout Style="{StaticResource InputStyle}"
+                                                           Hint="Peso"
+                                                           Grid.Row="2"
+                                                           Grid.Column="0">
+                            <Entry Keyboard="Numeric"
+                                   Text="{Binding Peso}"></Entry>
+                            <textInputLayout:SfTextInputLayout.TrailingView>
+                                <Label Text="KG"></Label>
+                            </textInputLayout:SfTextInputLayout.TrailingView>
+                        </textInputLayout:SfTextInputLayout>
+                        <textInputLayout:SfTextInputLayout Style="{StaticResource InputStyle}"
+                                                           Hint="RIR"
+                                                           Grid.Row="2"
+                                                           Grid.Column="1">
+                            <Entry Keyboard="Numeric"
+                                   Text="{Binding Rir}"></Entry>
+                        </textInputLayout:SfTextInputLayout>
+                        <buttons:SfButton Text="REGISTRAR"
+                                          Style="{StaticResource RoundedButton}"
+                                          Command="{Binding AddRegistroCommand}"
+                                          Grid.Row="3"
+                                          Grid.ColumnSpan="2"></buttons:SfButton>
+                    </Grid>
+                </Frame>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

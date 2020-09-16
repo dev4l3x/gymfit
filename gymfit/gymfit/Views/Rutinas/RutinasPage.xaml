@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:views="clr-namespace:GymFit.Views.Rutinas"
+             xmlns:icons="clr-namespace:GymFit.Services.Icons"
+             xmlns:converters="clr-namespace:GymFit.Converters;assembly=GymFit"
+             x:Name="content"
+             mc:Ignorable="d"
+             x:Class="GymFit.Views.Rutinas.RutinasPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BooleanNegatorConverter x:Key="NegatorConverter"></converters:BooleanNegatorConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HeightRequest="40" Margin="0,20,0,0">
+                <buttons:SfButton Text="ADD"
+                              BackgroundColor="{StaticResource AppDarkPurple}"
+                                  Margin="30, 0, 0, 0"
+                                  Padding="10"
+                                  CornerRadius="10"
+                                  Command="{Binding CreateRutinaCommand}"
+                              >
+
+                </buttons:SfButton>
+                <Label Text="MIS RUTINAS"
+                       VerticalOptions="Center"
+                        HorizontalOptions="CenterAndExpand" 
+                       Style="{StaticResource Title}"
+                   />
+                <buttons:SfButton Text="&#xf57c;"
+                                  Style="{StaticResource RoundedIconButton}"
+                                  Command="{Binding VerRutinasCompartidasCommand}">
+
+                </buttons:SfButton>
+            </StackLayout>
+            <CollectionView ItemsSource="{Binding Rutinas}"
+                            x:Name="rutinasList"
+                            SelectionMode="Single"
+                            >
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <SwipeView  HeightRequest="150">
+                            <SwipeView.RightItems>
+                                <SwipeItem BackgroundColor="{StaticResource AppDark}"
+                                           Command="{Binding Source={x:Reference content}, Path=BindingContext.CompartirRutinaCommand}"
+                                           CommandParameter="{Binding .}"
+                                           Text="Compartir"
+                                           IsVisible="{Binding Compartida, Converter={StaticResource NegatorConverter}}">
+                                </SwipeItem>
+                                <SwipeItem BackgroundColor="{StaticResource AppDarkPurple}"
+                                           Command="{Binding Source={x:Reference content}, Path=BindingContext.ActiveRutinaCommand}"
+                                           CommandParameter="{Binding .}"
+                                           Text="Activar">
+                                </SwipeItem>
+                                <SwipeItem BackgroundColor="{StaticResource AppRed}"
+                                           Command="{Binding Source={x:Reference content}, Path=BindingContext.DeleteRutinaCommand}"
+                                           CommandParameter="{Binding .}"
+                                           Text="Eliminar"
+                                           IsDestructive="True">
+                                </SwipeItem>
+                                
+                                
+                            </SwipeView.RightItems>
+                            <views:RutinaView HeightRequest="150"></views:RutinaView>
+                            <SwipeView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference content}, Path=BindingContext.RutinaSelectedCommand}"
+                                                      CommandParameter="{Binding .}"></TapGestureRecognizer>
+                            </SwipeView.GestureRecognizers>
+                        </SwipeView>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

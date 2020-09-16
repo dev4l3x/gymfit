@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="GymFit.CustomControls.TextWithLabel"
+             xmlns:icons="clr-namespace:GymFit.Services.Icons"
+             xmlns:tabview="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             x:Name="view">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Text="{Binding Source={x:Reference view}, Path=Icon}"
+               TextColor="{Binding Source={x:Reference view}, Path=IconColor}"
+               Grid.Column="0"
+               Grid.RowSpan="2"
+               FontFamily="{StaticResource FontAwesomeSolid}"
+               VerticalOptions="Center"
+               FontSize="17"
+               ></Label>
+
+        <Label Text="{Binding Source={x:Reference view}, Path=Title}"
+               TextColor="{Binding Source={x:Reference view}, Path=TitleColor}"
+               Grid.Row="0"
+               Grid.Column="1"></Label>
+
+        <Label Text="{Binding Source={x:Reference view}, Path=Value}"
+               TextColor="{Binding Source={x:Reference view}, Path=ValueColor}"
+               Grid.Row="1"
+               Grid.Column="1"
+               FontSize="15"></Label>
+
+        <tabview:SfTabView x:Name="tabbedView">
+            
+        </tabview:SfTabView>
+    </Grid>
+</ContentView>

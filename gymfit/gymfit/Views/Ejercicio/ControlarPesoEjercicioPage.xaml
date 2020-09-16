@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:icons="clr-namespace:GymFit.Services.Icons"
+             xmlns:converters="clr-namespace:GymFit.Converters;assembly=GymFit"
+             xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             mc:Ignorable="d"
+             x:Class="GymFit.Views.Ejercicio.ControlarPesoEjercicioPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DateTimeToShorterDateConverter x:Key="DateTimeConverter"></converters:DateTimeToShorterDateConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+             <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <graphics:SfGradientView Grid.Row="0">
+                    <graphics:SfGradientView.BackgroundBrush>           
+                        <graphics:SfLinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">                
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Color="{StaticResource AppPurple}" Offset="0.0" />
+                                <graphics:SfGradientStop Color="{StaticResource AppDarkPurple}" Offset="1.0" />
+                            </graphics:SfLinearGradientBrush.GradientStops>                
+                        </graphics:SfLinearGradientBrush>            
+                    </graphics:SfGradientView.BackgroundBrush>
+                </graphics:SfGradientView>
+
+                <StackLayout Padding="40, 40, 40, 40"
+                             Grid.Row="0">
+
+                    <Label Text="{Binding Ejercicio.Especificacion.Nombre}"
+                           FontSize="Medium"
+                           FontAttributes="Bold"
+                           TextColor="White"></Label>
+
+                    <Label Text="{Binding Ejercicio.Especificacion.Descripcion}"
+                           TextColor="LightGray"
+                           TextType="Html"></Label>
+
+
+                </StackLayout>
+            </Grid>
+
+            <AbsoluteLayout HeightRequest="80" 
+>
+                <BoxView BackgroundColor="{StaticResource AppDarkPurple}"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 0.6"
+                         AbsoluteLayout.LayoutFlags="All"></BoxView>
+
+                <buttons:SfButton Text="Añadir registro"
+                                  AbsoluteLayout.LayoutBounds="0.5, 0"
+                                  AbsoluteLayout.LayoutFlags="PositionProportional"
+                                  Style="{StaticResource RoundedButton}"
+                                  BorderColor="White"
+                                  BorderWidth="2"
+                                  Command="{Binding AddRegistroEjercicioCommand}"></buttons:SfButton>
+            </AbsoluteLayout>
+
+            <Label Text="Registros de pesos"
+                   Style="{StaticResource Subtitle}"
+                   Margin="40, 10, 40, 10"
+                   FontSize="16"></Label>
+
+            <xForms:SfListView ItemsSource="{Binding Registros}"
+                               ItemSize="70"
+                               x:Name="Registros"
+                               SelectionMode="SingleDeselect"
+                               SelectionBackgroundColor="Transparent">
+                <xForms:SfListView.GroupHeaderTemplate >
+                    <DataTemplate x:Name="GroupHeaderTemplate"  x:Key="GroupHeaderTemplate">
+                        <ViewCell>
+                            <Label Text="{Binding Key, StringFormat='Serie {0}'}"
+                                   TextColor="Black"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   Margin="20, 10, 10, 0"></Label>
+                        </ViewCell>
+                    </DataTemplate>
+                </xForms:SfListView.GroupHeaderTemplate>
+                <xForms:SfListView.ItemTemplate>
+                    <DataTemplate>
+                            <Grid VerticalOptions="Center"
+                                  Padding="40, 10, 40, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <BoxView WidthRequest="3"
+                                         BackgroundColor="{StaticResource AppDarkPurple}"
+                                         Grid.Column="0"></BoxView>
+                                <StackLayout 
+                                             Grid.Column="1">
+                                    <Label Text="{Binding Fecha, Converter={StaticResource DateTimeConverter}}"></Label>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Peso, StringFormat='{0} kg'}"></Label>
+                                        <Label Text=" - "></Label>
+                                        <Label Text="{Binding Rir, StringFormat='RIR {0}'}"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                    </DataTemplate>
+                </xForms:SfListView.ItemTemplate>
+            </xForms:SfListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

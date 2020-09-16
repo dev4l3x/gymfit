@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:customcontrols="clr-namespace:GymFit.CustomControls"
+             xmlns:tabview="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:icons="clr-namespace:GymFit.Services.Icons"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:ejercicio="clr-namespace:GymFit.Views.Ejercicio;assembly=GymFit"
+             mc:Ignorable="d"
+             x:Class="GymFit.Views.Rutinas.DetalleRutinaPage"
+             NavigationPage.HasNavigationBar="False">
+    
+    <ContentPage.Content>
+        <Grid Margin="0, 0, 0, 0"
+              RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="170"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <graphics:SfGradientView Grid.Row="0">
+                <graphics:SfGradientView.BackgroundBrush>           
+                    <graphics:SfLinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">                
+                        <graphics:SfLinearGradientBrush.GradientStops>
+                            <graphics:SfGradientStop Color="{StaticResource AppPurple}" Offset="0.0" />
+                            <graphics:SfGradientStop Color="{StaticResource AppDarkPurple}" Offset="1.0" />
+                        </graphics:SfLinearGradientBrush.GradientStops>                
+                    </graphics:SfLinearGradientBrush>            
+                </graphics:SfGradientView.BackgroundBrush>
+            </graphics:SfGradientView>
+
+            <StackLayout Grid.Row="0"
+                         Spacing="20">
+                <Label Text="{Binding RutinaActual.Nombre}"
+                       Style="{StaticResource Title}"
+                       TextColor="White"
+                       Margin="40, 40, 40, 0"></Label>
+
+            
+                <Label
+                    Text="{Binding RutinaActual.Descripcion}"
+                    TextColor="LightGray"
+                    Margin="40, 0, 40, 0"></Label>
+
+                <StackLayout Orientation="Horizontal"
+                             Margin="40, 0, 40, 20">
+
+                    <Label Text="&#xf133;"
+                           FontFamily="{StaticResource FontAwesomeRegular}"
+                           FontSize="16"
+                           TextColor="White"
+                           VerticalOptions="Center"></Label>
+                    <Label Text="{Binding RutinaActual.NumDiasSemana, StringFormat='{0} días'}"
+                           TextColor="White"
+                           Margin="0, 0, 20, 0"></Label>
+
+                    <Label Text="{x:Static icons:IconsService.Trophy}"
+                           FontFamily="{StaticResource FontAwesomeSolid}"
+                           TextColor="White"
+                           FontSize="16"
+                           VerticalTextAlignment="Center"></Label>
+                    <Label Text="{Binding RutinaActual.NivelText}"
+                           TextColor="White"></Label>
+                </StackLayout>
+            </StackLayout>
+
+            <AbsoluteLayout Grid.Row="1">
+                <BoxView BackgroundColor="{StaticResource AppDarkPurple}"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 0.5"
+                         AbsoluteLayout.LayoutFlags="All"></BoxView>
+
+                <Frame 
+                       Padding="10"
+                       AbsoluteLayout.LayoutBounds="0.5, 0.5"
+                       AbsoluteLayout.LayoutFlags="PositionProportional">
+                    <Label Text="Ejercicios"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           FontSize="15"></Label>
+                </Frame>
+            </AbsoluteLayout>
+            
+            <xForms:SfListView ItemsSource="{Binding RutinaActual.Ejercicios}"
+                                               ItemSize="100"
+                                               x:Name="Exercises"
+                                               AllowGroupExpandCollapse="False"
+                                               SelectionBackgroundColor="Transparent"
+                                               AllowSwiping="True"
+                                               Margin="20, 0, 20,0"
+                                               HeaderSize="60"
+                                               Grid.Row="2"
+                                               SelectionMode="SingleDeselect"
+                                               SelectionChangedCommand="{Binding ControlarPesoEjercicioCommand}"
+                                               >
+                                <xForms:SfListView.GroupHeaderTemplate >
+                                    <DataTemplate x:Name="GroupHeaderTemplate"  x:Key="GroupHeaderTemplate">
+                                        <ViewCell>
+                                            <Label Text="{Binding Key, StringFormat='Día {0}'}"
+                                                   TextColor="Black"
+                                                   FontSize="18"
+                                                   FontAttributes="Bold"
+                                                   VerticalOptions="Center"
+                                                   Margin="10, 10, 10, 0"></Label>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </xForms:SfListView.GroupHeaderTemplate>
+                                <xForms:SfListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ejercicio:ListaEjercicios></ejercicio:ListaEjercicios>
+                                    </DataTemplate>
+                                </xForms:SfListView.ItemTemplate>
+                            </xForms:SfListView>
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

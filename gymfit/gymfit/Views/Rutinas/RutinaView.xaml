@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:icons="clr-namespace:GymFit.Services.Icons"
+             xmlns:converters="clr-namespace:GymFit.Converters"
+             x:Class="GymFit.Views.Rutinas.RutinaView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:IdRutinaToBoolConverter x:Key="idToBool"></converters:IdRutinaToBoolConverter>
+            <converters:RutinaCompartidaToBoolConverter x:Key="rutinaToBool"></converters:RutinaCompartidaToBoolConverter>
+            <converters:RutinaObtenidaToBoolConverter x:Key="rutinaObtenidaToBool"></converters:RutinaObtenidaToBoolConverter>
+            <Style x:Key="RutinaIcon" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeSolid}"></Setter>
+                <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+                <Setter Property="Margin" Value="0, 5, 10, 0"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource AppDarkPurple}"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+  <ContentView.Content>
+        <Frame CornerRadius="0"
+               HasShadow="True"
+               Visual="Material"
+               Margin="20">
+            <StackLayout VerticalOptions="Center">
+
+                <Label Text="{Binding Nombre}"
+                       TextColor="{StaticResource AppDark}"
+                       FontAttributes="Bold"
+                       FontSize="17"></Label>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="&#xf133;"
+                           FontFamily="{StaticResource FontAwesomeRegular}"
+                           FontSize="16"
+                           TextColor="{StaticResource AppDarkPurple}"
+                           VerticalOptions="Center"></Label>
+                    <Label Text="{Binding NumDiasSemana, StringFormat='{0} días'}"
+                           TextColor="{StaticResource AppDark}"></Label>
+
+                    <Label Text="{x:Static icons:IconsService.Trophy}"
+                           FontFamily="{StaticResource FontAwesomeSolid}"
+                           TextColor="{StaticResource AppDarkPurple}"
+                           FontSize="16"
+                           VerticalTextAlignment="Center"
+                           Margin="20,0,0,0"></Label>
+                    <Label Text="{Binding NivelText}"
+                           TextColor="{StaticResource AppDark}"></Label>
+
+                    
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{x:Static icons:IconsService.Star}"
+                           Style="{StaticResource RutinaIcon}"
+                           IsVisible="{Binding Id, Converter={StaticResource idToBool}}"></Label>
+
+                    <Label Text="{x:Static icons:IconsService.Share}"
+                           Style="{StaticResource RutinaIcon}"
+                           IsVisible="{Binding ., Converter={StaticResource rutinaToBool}}"></Label>
+
+                    <Label Text="{x:Static icons:IconsService.Download}"
+                           Style="{StaticResource RutinaIcon}"
+                           IsVisible="{Binding ., Converter={StaticResource rutinaObtenidaToBool}}"></Label>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+  </ContentView.Content>
+</ContentView>
