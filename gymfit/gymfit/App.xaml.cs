@@ -1,20 +1,21 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using gymfit.Services;
-using gymfit.Views;
+using GymFit.Views.Rutinas;
+using Ninject;
 
-namespace gymfit
+namespace GymFit
 {
     public partial class App : Application
     {
+
+        public static readonly IKernel kernel = new StandardKernel(new NinjectSettings() { LoadExtensions = false }, new CommonModule());
 
         public App()
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+            MainPage = new RutinasPage();
         }
 
         protected override void OnStart()

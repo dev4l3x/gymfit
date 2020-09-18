@@ -9,7 +9,6 @@
              xmlns:icons="clr-namespace:GymFit.Services.Icons"
              xmlns:tabview="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
              xmlns:ejercicio="clr-namespace:GymFit.Views.Ejercicio;assembly=GymFit"
-             xmlns:dataSource="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
              xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
              mc:Ignorable="d"
              x:Class="GymFit.Views.Rutinas.AddRutinaPage"

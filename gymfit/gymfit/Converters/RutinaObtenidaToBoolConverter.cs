@@ -14,11 +14,6 @@ namespace GymFit.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is Rutina rutina)
-            {
-                return rutina.Compartida && (rutina.Publicador == null ||
-                                             rutina.Publicador.Username != rutina.Propietario.Username);
-            }
 
             return false;
         }

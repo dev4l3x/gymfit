@@ -17,16 +17,32 @@ namespace GymFit.Services.Interfaces
         Task<bool> DeleteRutina(Rutina rutina);
 
         Task MarcarComoActiva(Rutina rutina);
+    }
 
-        Task<Rutina> CompartirRutina(Rutina rutina);
+    public class MockRutinasService : IRutinasService
+    {
+        public async Task<Rutina> AddRutina(Rutina rutina)
+        {
+            return new Rutina();
+        }
 
-        Task<IEnumerable<Rutina>> GetRutinasCompartidas();
-        Task<IEnumerable<Rutina>> GetRutinasPopulares();
-        Task<IEnumerable<Rutina>> GetRutinasRecientes();
-        Task<IEnumerable<Rutina>> GetRutinasByName(string name);
+        public async Task<bool> DeleteRutina(Rutina rutina)
+        {
+            return true;
+        }
 
-        Task ObtenerRutina(Rutina rutina);
-        Task ValorarRutina(Rutina rutina, int valoracion);
-        Task<bool> CanValorarRutina(Rutina rutina);
+        public async Task<IEnumerable<Rutina>> GetRutinasOfLoggedUser()
+        {
+            return new List<Rutina>()
+            {
+                new Rutina(NIVEL.INTERMEDIO, 3, "Prueba", "Rutina de prueba", new List<Ejercicio>())
+            };
+            //return new List<Rutina>();
+        }
+
+        public async Task MarcarComoActiva(Rutina rutina)
+        {
+            Console.WriteLine("Rutina marcada como activa");
+        }
     }
 }

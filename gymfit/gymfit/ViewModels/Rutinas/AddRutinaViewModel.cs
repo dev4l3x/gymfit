@@ -160,7 +160,6 @@ namespace GymFit.ViewModels.Rutinas
                 var rutinaCreada = await _rutiansService.AddRutina(rutina);
                 if(rutinaCreada != null)
                 {
-                    rutina.Id = rutinaCreada.Id;
                     MessagingCenter.Send(this, Events.ADD_RUTINA, rutina);
                 }
                 await _pageService.PopToRootPage();

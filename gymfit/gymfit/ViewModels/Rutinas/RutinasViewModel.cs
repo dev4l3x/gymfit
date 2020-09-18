@@ -28,8 +28,6 @@ namespace GymFit.ViewModels.Rutinas
         public ICommand RutinaSelectedCommand { get; set; }
         public ICommand DeleteRutinaCommand { get; set; }
         public ICommand ActiveRutinaCommand { get; set; }
-        public ICommand CompartirRutinaCommand { get; set; }
-        public ICommand VerRutinasCompartidasCommand { get; set; }
 
         #endregion
 
@@ -41,18 +39,6 @@ namespace GymFit.ViewModels.Rutinas
             Rutinas = new ObservableCollection<Rutina>();
             FetchRutinas();
             MessagingCenter.Subscribe<AddRutinaViewModel, Rutina>(this, Events.ADD_RUTINA, OnAddRutina);
-            MessagingCenter.Subscribe<GenerarRutinaViewModel, Rutina>(this, Events.ADD_RUTINA, OnAddRutina);
-            MessagingCenter.Subscribe<DetalleRutinaCompartidaViewModel>(this, Events.RutinaObtenida, OnRutinaObtenida);
-        }
-
-        private void OnRutinaObtenida(DetalleRutinaCompartidaViewModel obj)
-        {
-            FetchRutinas();
-        }
-
-        private void OnAddRutina(GenerarRutinaViewModel arg1, Rutina arg2)
-        {
-            this.Rutinas.Add(arg2);
         }
 
         private void OnAddRutina(AddRutinaViewModel sender, Rutina arg)
@@ -66,24 +52,8 @@ namespace GymFit.ViewModels.Rutinas
             RutinaSelectedCommand = new Command((rutina) => RutinaSelected(rutina as Rutina));
             DeleteRutinaCommand = new Command((rutina) => DeleteRutina(rutina as Rutina));
             ActiveRutinaCommand = new Command((rutina) => ActiveRutina(rutina as Rutina));
-            CompartirRutinaCommand = new Command((rutina) => CompatirRutina(rutina as Rutina));
-            VerRutinasCompartidasCommand = new Command(() => VerRutinasCompartidas());
         }
 
-        private void VerRutinasCompartidas()
-        {
-            _pageService.PushAsync(new TiendaRutinasPage());
-        }
-
-        private async Task CompatirRutina(Rutina rutina)
-        {
-            _ = await _rutinasService.CompartirRutina(rutina);
-            if (rutina != null)
-            {
-                rutina.Compartida = true;
-                rutina.Publicador = rutina.Propietario;
-            }
-        }
 
         private async void ElegirCreacionRutina()
         {
@@ -94,19 +64,13 @@ namespace GymFit.ViewModels.Rutinas
             }
             else if(response == "Generar rutina")
             {
-                ShowGenerateRutinaPage();
             }
         }
 
-        private async void ShowGenerateRutinaPage()
-        {
-            await _pageService.PushAsync(new GenerateRutinaPage());
-        }
 
         private async void ActiveRutina(Rutina rutina)
         {
             _rutinasService.MarcarComoActiva(rutina);
-            await SecureStorage.SetAsync("RutinaActiva", rutina.Id.ToString());
 
             var aux = new List<Rutina>(Rutinas);
             Rutinas.Clear();

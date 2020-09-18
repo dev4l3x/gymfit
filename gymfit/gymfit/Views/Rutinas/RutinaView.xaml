@@ -41,29 +41,8 @@
                     <Label Text="{Binding NumDiasSemana, StringFormat='{0} días'}"
                            TextColor="{StaticResource AppDark}"></Label>
 
-                    <Label Text="{x:Static icons:IconsService.Trophy}"
-                           FontFamily="{StaticResource FontAwesomeSolid}"
-                           TextColor="{StaticResource AppDarkPurple}"
-                           FontSize="16"
-                           VerticalTextAlignment="Center"
-                           Margin="20,0,0,0"></Label>
-                    <Label Text="{Binding NivelText}"
-                           TextColor="{StaticResource AppDark}"></Label>
 
-                    
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{x:Static icons:IconsService.Star}"
-                           Style="{StaticResource RutinaIcon}"
-                           IsVisible="{Binding Id, Converter={StaticResource idToBool}}"></Label>
 
-                    <Label Text="{x:Static icons:IconsService.Share}"
-                           Style="{StaticResource RutinaIcon}"
-                           IsVisible="{Binding ., Converter={StaticResource rutinaToBool}}"></Label>
-
-                    <Label Text="{x:Static icons:IconsService.Download}"
-                           Style="{StaticResource RutinaIcon}"
-                           IsVisible="{Binding ., Converter={StaticResource rutinaObtenidaToBool}}"></Label>
                 </StackLayout>
             </StackLayout>
         </Frame>

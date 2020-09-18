@@ -18,27 +18,31 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Orientation="Horizontal" HeightRequest="40" Margin="0,20,0,0">
+            <Grid HeightRequest="45" 
+                  Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
                 <buttons:SfButton Text="ADD"
                               BackgroundColor="{StaticResource AppDarkPurple}"
-                                  Margin="30, 0, 0, 0"
+                                  Margin="20, 0, 20, 0"
                                   Padding="10"
                                   CornerRadius="10"
                                   Command="{Binding CreateRutinaCommand}"
+                                  Grid.Column="2"
                               >
 
                 </buttons:SfButton>
                 <Label Text="MIS RUTINAS"
                        VerticalOptions="Center"
-                        HorizontalOptions="CenterAndExpand" 
+                        HorizontalOptions="EndAndExpand" 
                        Style="{StaticResource Title}"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
                    />
-                <buttons:SfButton Text="&#xf57c;"
-                                  Style="{StaticResource RoundedIconButton}"
-                                  Command="{Binding VerRutinasCompartidasCommand}">
-
-                </buttons:SfButton>
-            </StackLayout>
+            </Grid>
             <CollectionView ItemsSource="{Binding Rutinas}"
                             x:Name="rutinasList"
                             SelectionMode="Single"
