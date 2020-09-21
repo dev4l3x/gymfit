@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FitnessTrack.Themes.LightTheme">
+
+    <Color x:Key="Primary">#4B32A6</Color>
+    <Color x:Key="Secondary">#5138F2</Color>
+    <Color x:Key="Dark">#171B26</Color>
+    <Color x:Key="Red">#F22222</Color>
+    <Color x:Key="AlternativePrimary">#A127F2</Color>
+    
+</ResourceDictionary>

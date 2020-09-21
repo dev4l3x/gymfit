@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FitnessTrack.Views.RoutinePage"
+             Padding="20"
+             xmlns:icons="clr-namespace:FitnessTrack.Icons">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Style="{StaticResource TitleStyle}"
+                               Text="RUTINAS"></Label>
+
+            <Label BackgroundColor="Transparent"
+                    Style="{StaticResource TitleStyle}"
+                    Text="{x:Static icons:SolidIcons.Search}"
+                    FontFamily="{StaticResource FontAwesomeSolid}"></Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

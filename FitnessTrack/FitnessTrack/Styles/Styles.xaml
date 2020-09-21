@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:themes="clr-namespace:FitnessTrack.Themes"
+                    x:Class="FitnessTrack.Styles.Styles">
+
+    <ResourceDictionary.MergedDictionaries>
+        <themes:LightTheme></themes:LightTheme>
+    </ResourceDictionary.MergedDictionaries>
+    
+    
+
+    <Style TargetType="Label" x:Key="TitleStyle">
+        <Setter Property="FontSize"
+                Value="25"></Setter>
+        <Setter Property="TextColor"
+                Value="{StaticResource Primary}"></Setter>
+        <Setter Property="FontAttributes"
+                Value="Bold"></Setter>
+    </Style>
+    
+    
+    <!-- FONTS -->
+
+    <OnPlatform x:TypeArguments="x:String" 
+                x:Key="FontAwesomeBrands">
+        <On Platform="Android" 
+          Value="FontAwm5BrandsRegular.otf#Regular" />
+        <On Platform="iOS" 
+          Value="FontAwm5Brands-Regular" />
+    </OnPlatform>
+
+    <OnPlatform x:TypeArguments="x:String" 
+                x:Key="FontAwesomeSolid">
+        <On Platform="Android" 
+          Value="FontAwm5Solid.otf#Regular" />
+        <On Platform="iOS" 
+          Value="FontAwm5Free-Solid" />
+    </OnPlatform>
+
+    <OnPlatform x:TypeArguments="x:String" 
+                x:Key="FontAwesomeRegular">
+        <On Platform="Android" 
+          Value="FontAwm5Regular.otf#Regular" />
+        <On Platform="iOS" 
+          Value="FontAwm5Free-Regular" />
+    </OnPlatform>
+
+</ResourceDictionary>
