@@ -16,5 +16,10 @@ namespace FitnessTrack.Views
         {
             InitializeComponent();
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage.Navigation.PushAsync(new FitnessTrack.Views.Routines.AddRoutinePage());
+        }
     }
 }

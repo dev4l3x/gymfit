@@ -11,7 +11,11 @@ namespace FitnessTrack
         {
             InitializeComponent();
 
-            MainPage = new RoutinePage();
+            MainPage = new NavigationPage(new RoutinePage())
+            {
+                BarBackgroundColor = Color.White,
+                BarTextColor = (Color)App.Current.Resources["Dark"]
+            };
         }
 
         protected override void OnStart()
