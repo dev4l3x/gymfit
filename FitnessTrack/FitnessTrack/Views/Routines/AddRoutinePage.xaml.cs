@@ -16,5 +16,30 @@ namespace FitnessTrack.Views.Routines
         {
             InitializeComponent();
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            if(PageTwo.IsVisible)
+            {
+                PageTwo.IsVisible = false;
+                PageOne.IsVisible = true;
+                ContinueButton.IsVisible = true;
+                CreateButton.IsVisible = false;
+                return true;
+            }
+            else
+            {
+                return base.OnBackButtonPressed();
+            }
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            PageOne.IsVisible = false;
+            PageTwo.IsVisible = true;
+            var but = (Button)sender;
+            but.IsVisible = false;
+            CreateButton.IsVisible = true;
+        }
     }
 }
