@@ -1,5 +1,6 @@
 ﻿using FitnessTrack.Persistence.Base;
 using FitnessTrack.Repositories;
+using FitnessTrack.Services;
 using Ninject.Modules;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,13 @@ namespace FitnessTrack.Containers
                 Persistence.AppContext appContext = new Persistence.AppContext();
                 return new UnitOfWork(
                     appContext, 
-                    new RoutineRepository(appContext)
+                    new RoutineRepository(appContext),
+                    new ExerciseRepository(appContext)
                 );
             }).InSingletonScope();
+
+            Bind<INavigationService>().To<NavigationService>().InSingletonScope();
+
         }
     }
 }

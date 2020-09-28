@@ -16,16 +16,33 @@
                 <Frame CornerRadius="10"
                    HasShadow="False">
                     <StackLayout>
-                        <Entry Placeholder="Nombre"></Entry>
+                        <Entry Placeholder="Nombre"
+                               Text="{Binding Name}"></Entry>
                         <Editor Placeholder="Descripción"
-                            HeightRequest="150"></Editor>
+                            HeightRequest="150"
+                                Text="{Binding Description}"></Editor>
 
 
-                        <Picker></Picker>
+                        <Picker SelectedIndex="{Binding Day}">
+                            <Picker.Items>
+                                <x:String>1</x:String>
+                                <x:String>2</x:String>
+                                <x:String>3</x:String>
+                                <x:String>4</x:String>
+                                <x:String>5</x:String>
+                                <x:String>6</x:String>
+                                <x:String>7</x:String>
+                            </Picker.Items>
+                        </Picker>
 
-                        <Entry Placeholder="Numero de series"></Entry>
                     </StackLayout>
                 </Frame>
+                <Button Text="Añadir serie"
+                        Command="{Binding AddNewSetCommand}"></Button>
+                <ListView x:Name="RepsList"
+                          ItemsSource="{Binding Sets}">
+                    
+                </ListView>
 
                 <Button Text="CREAR EJERCICIO"
                     Style="{StaticResource ButtonStyle}"></Button>

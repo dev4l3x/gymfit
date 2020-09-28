@@ -15,6 +15,8 @@ namespace FitnessTrack.Persistence
         private const string _dbName = "fitnesstrack.db";
 
         public DbSet<Routine> Routines { get; set; }
+        public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<ExerciseSpecification> ExerciseSpecifications { get; set; }
 
         public AppContext()
         {
