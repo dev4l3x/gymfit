@@ -9,6 +9,8 @@ namespace FitnessTrack.Models
     {
         public ExerciseSpecification Specification { get; set; }
         public List<int> Sets { get; set; }
+        public Routine Routine { get; set; }
+        public int Day { get; set; }
     }
 
     public class ExerciseSpecification

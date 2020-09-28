@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FitnessTrack.Views.Routines.CreateExercisePage"
+             Style="{StaticResource PageStyle}"
+             xmlns:locator="clr-namespace:FitnessTrack.Helpers"
+             locator:ViewModelLocator.AutoFindViewModel="True">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Crear ejercicio"
+                   Style="{StaticResource TitleStyle}"></Label>
+                <Label Text="Crea un ejercico para incorporarlo posteriormente a tus rutinas"
+                   Style="{StaticResource LightTextStyle}"></Label>
+
+                <Frame CornerRadius="10"
+                   HasShadow="False">
+                    <StackLayout>
+                        <Entry Placeholder="Nombre"></Entry>
+                        <Editor Placeholder="Descripción"
+                            HeightRequest="150"></Editor>
+
+
+                        <Picker></Picker>
+
+                        <Entry Placeholder="Numero de series"></Entry>
+                    </StackLayout>
+                </Frame>
+
+                <Button Text="CREAR EJERCICIO"
+                    Style="{StaticResource ButtonStyle}"></Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

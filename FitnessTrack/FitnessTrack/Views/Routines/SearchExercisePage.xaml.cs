@@ -10,16 +10,16 @@ using Xamarin.Forms.Xaml;
 namespace FitnessTrack.Views.Routines
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddExercisesView : ContentView
+    public partial class SearchExercisePage : ContentPage
     {
-        public AddExercisesView()
+        public SearchExercisePage()
         {
             InitializeComponent();
         }
 
-        private void SearchBar_Focused(object sender, FocusEventArgs e)
+        private void Button_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage.Navigation.PushAsync(new SearchExercisePage());
+            App.Current.MainPage.Navigation.PushAsync(new CreateExercisePage());
         }
     }
 }

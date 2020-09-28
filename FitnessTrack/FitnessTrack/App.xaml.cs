@@ -1,4 +1,5 @@
 ﻿using FitnessTrack.Views;
+using Plugin.SharedTransitions;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,7 +12,7 @@ namespace FitnessTrack
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new RoutinePage())
+            MainPage = new SharedTransitionNavigationPage(new RoutinePage())
             {
                 BarBackgroundColor = Color.White,
                 BarTextColor = (Color)App.Current.Resources["Dark"]

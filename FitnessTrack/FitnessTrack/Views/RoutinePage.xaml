@@ -6,13 +6,14 @@
              xmlns:icons="clr-namespace:FitnessTrack.Icons"
              xmlns:locator="clr-namespace:FitnessTrack.Helpers"
              locator:ViewModelLocator.AutoFindViewModel="True"
-             BackgroundColor="White"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{StaticResource Background}">
     <ContentPage.Content>
         <AbsoluteLayout>
             <CollectionView ItemsSource="{Binding Routines}"
                             AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                             AbsoluteLayout.LayoutFlags="All"
+                            ItemSizingStrategy="MeasureFirstItem"
                             >
                 <CollectionView.Header>
                     <StackLayout Orientation="Horizontal" 
@@ -30,8 +31,10 @@
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <ContentView Padding="20">
-                            <Frame HasShadow="True">
+                        <ContentView Padding="0, 20, 0, 10"
+                                     HeightRequest="100">
+                            <Frame HasShadow="False" 
+                                   CornerRadius="10">
                                 <StackLayout>
                                     <Label Text="{Binding Name}"></Label>
                                     <Label Text="{Binding Description}"></Label>

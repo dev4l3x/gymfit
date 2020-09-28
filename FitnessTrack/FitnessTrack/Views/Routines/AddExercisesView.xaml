@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FitnessTrack.Views.Routines.AddExercisesView">
+             x:Class="FitnessTrack.Views.Routines.AddExercisesView"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions">
   <ContentView.Content>
         <StackLayout >
 
@@ -16,7 +17,10 @@
                        Grid.ColumnSpan="2"
                        ></Label>
 
-            <Button Text="Añadir ejercicio"></Button>
+            <SearchBar Placeholder="Buscar ejercicio"
+                       FontAttributes="Italic"
+                       sharedTransitions:Transition.Name="searchtransition"
+                       Focused="SearchBar_Focused"></SearchBar>
 
             <CollectionView>
                 

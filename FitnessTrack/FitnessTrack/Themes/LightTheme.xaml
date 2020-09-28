@@ -5,7 +5,8 @@
 
     <Color x:Key="Primary">#4B32A6</Color>
     <Color x:Key="Secondary">#5138F2</Color>
-    <Color x:Key="Dark">#171B26</Color>
+    <Color x:Key="Background">#F0F0F0</Color>
+    <Color x:Key="Dark">Black</Color>
     <Color x:Key="Red">#F22222</Color>
     <Color x:Key="AlternativePrimary">#A127F2</Color>
     <Color x:Key="LightGray">#D3D3D3</Color>
