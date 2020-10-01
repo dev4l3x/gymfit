@@ -8,6 +8,7 @@ namespace FitnessTrack.ViewModels.Routines
     using FitnessTrack.Persistence.Base;
     using FitnessTrack.Services;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -122,6 +123,7 @@ namespace FitnessTrack.ViewModels.Routines
             {
                 Day = Day,
                 Specification = specification,
+                Sets = Sets.ToList()
             };
         }
     }

@@ -36,7 +36,7 @@ namespace FitnessTrack.Models
         public int Day { get; set; }
     }
 
-    public class ExerciseSpecification
+    public class ExerciseSpecification : Entity
     {
         public string Name { get; set; }
         public string Description { get; set; }

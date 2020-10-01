@@ -6,8 +6,7 @@
              xmlns:locator="clr-namespace:FitnessTrack.Helpers"
              locator:ViewModelLocator.AutoFindViewModel="True">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
+        <StackLayout>
                 <Label Text="Crear ejercicio"
                    Style="{StaticResource TitleStyle}"></Label>
                 <Label Text="Crea un ejercico para incorporarlo posteriormente a tus rutinas"
@@ -41,12 +40,11 @@
                         Command="{Binding AddNewSetCommand}"></Button>
                 <ListView x:Name="RepsList"
                           ItemsSource="{Binding Sets}">
-                    
+
                 </ListView>
 
                 <Button Text="CREAR EJERCICIO"
                     Style="{StaticResource ButtonStyle}"></Button>
             </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
