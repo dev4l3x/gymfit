@@ -1,7 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:effects="clr-namespace:FitnessTrack.Effects" xmlns:customcontrols="clr-namespace:FitnessTrack.CustomControls"
              x:Class="FitnessTrack.Views.Routines.RoutineInfoView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="White"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
     <ContentView.Content>
         <Grid ColumnSpacing="40"
                   RowSpacing="20">
@@ -31,32 +38,55 @@
                        Grid.ColumnSpan="2"
                        ></Label>
 
-                <Entry Placeholder="Nombre de rutina"
-                       FontSize="14"
+            <Frame Grid.Row="2"
+                   Grid.ColumnSpan="2"
+                   BackgroundColor="#E3E3E3"
+                   CornerRadius="10"
+                   HasShadow="False">
+                <StackLayout>
+                    <customcontrols:RoundedEntry Placeholder="Nombre de rutina"
                        Grid.Row="2"
-                       Grid.ColumnSpan="2"></Entry>
+                       Grid.ColumnSpan="2"
+                       Text="{Binding Name}"
+                       CornerRadius="10">
+                    </customcontrols:RoundedEntry>
 
-                <Editor Placeholder="Descripción..."
+                    <Frame HasShadow="False"
+                           Padding="10"
+                           BackgroundColor="White"
+                           CornerRadius="10">
+                        <Editor Placeholder="Descripción..."
                         FontSize="14"
                         HeightRequest="100"
                         Grid.Row="3"
-                       Grid.ColumnSpan="2"></Editor>
+                       Grid.ColumnSpan="2"
+                        Text="{Binding Description}"
+                            BackgroundColor="White">
+                            <Editor.Effects>
+                                <effects:NoUnderlineEffect></effects:NoUnderlineEffect>
+                            </Editor.Effects>
+                        </Editor>
+                    </Frame>
 
-                <Entry Placeholder="Número de días"
+                    <customcontrols:RoundedEntry 
+                        Placeholder="Número de días"
                        Grid.Row="4"
                        Grid.Column="0"
-                       FontSize="14"
                        WidthRequest="110"
-                       HorizontalOptions="Start"></Entry>
+                        CornerRadius="10"
+                       HorizontalOptions="Start"
+                       Text="{Binding Days}"></customcontrols:RoundedEntry>
 
-                <StackLayout Orientation="Horizontal"
+                    <StackLayout Orientation="Horizontal"
                              Grid.Row="4"
                              Grid.Column="1">
-                    <CheckBox Color="{StaticResource Primary}"></CheckBox>
-                    <Label Text="Rutina actual"
+                        <CheckBox Color="{StaticResource Primary}"></CheckBox>
+                        <Label Text="Rutina actual"
                            VerticalOptions="Center"
                            Style="{StaticResource TextStyle}"></Label>
+                    </StackLayout>
                 </StackLayout>
+            </Frame>
 
                 
 

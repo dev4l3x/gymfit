@@ -44,7 +44,8 @@
                 </ListView>
 
                 <Button Text="CREAR EJERCICIO"
-                    Style="{StaticResource ButtonStyle}"></Button>
+                        Style="{StaticResource ButtonStyle}"
+                        Command="{Binding CreateExerciseCommand}"></Button>
             </StackLayout>
     </ContentPage.Content>
 </ContentPage>

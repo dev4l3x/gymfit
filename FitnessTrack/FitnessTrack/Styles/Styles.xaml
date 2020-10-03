@@ -13,7 +13,7 @@
         <Setter Property="FontSize"
                 Value="20"></Setter>
         <Setter Property="TextColor"
-                Value="{StaticResource Primary}"></Setter>
+                Value="{StaticResource Secondary}"></Setter>
         <Setter Property="FontAttributes"
                 Value="Bold"></Setter>
     </Style>

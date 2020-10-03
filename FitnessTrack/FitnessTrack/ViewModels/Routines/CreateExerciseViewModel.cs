@@ -4,6 +4,8 @@ using System.Text;
 
 namespace FitnessTrack.ViewModels.Routines
 {
+    using FitnessTrack.Configuration;
+    using FitnessTrack.Helpers;
     using FitnessTrack.Models;
     using FitnessTrack.Persistence.Base;
     using FitnessTrack.Services;
@@ -18,6 +20,7 @@ namespace FitnessTrack.ViewModels.Routines
 
         private IUnitOfWork _unitOfWork;
         private INavigationService _navigationService;
+        private IMessagingService _messagingService;
 
         private string _name;
         public string Name
@@ -79,11 +82,11 @@ namespace FitnessTrack.ViewModels.Routines
         public ICommand CreateExerciseCommand { get; set; }
         public ICommand AddNewSetCommand { get; set; }
 
-        public CreateExerciseViewModel(IUnitOfWork unitOfWork, INavigationService navigationService)
+        public CreateExerciseViewModel(IUnitOfWork unitOfWork, INavigationService navigationService, IMessagingService messagingService)
         {
             _unitOfWork = unitOfWork;
             _navigationService = navigationService;
-
+            _messagingService = messagingService;
             Sets = new ObservableCollection<int>();
 
             InitializeComands();
@@ -91,7 +94,7 @@ namespace FitnessTrack.ViewModels.Routines
 
         private void InitializeComands()
         {
-            CreateExerciseCommand = new Command(() => CreateExercise());
+            CreateExerciseCommand = new LockCommand(CreateExercise);
             AddNewSetCommand = new Command(() => _ = AddNewSet());
         }
 
@@ -108,7 +111,7 @@ namespace FitnessTrack.ViewModels.Routines
             }
         }
 
-        private void CreateExercise()
+        private async Task CreateExercise()
         {
             var specification = new ExerciseSpecification
             {
@@ -118,6 +121,7 @@ namespace FitnessTrack.ViewModels.Routines
 
             var specificationRepository = _unitOfWork.GetGenericRepository<ExerciseSpecification>();
             specificationRepository.Add(specification);
+            await _unitOfWork.SaveAsync();
 
             var exercise = new Exercise
             {
@@ -125,6 +129,8 @@ namespace FitnessTrack.ViewModels.Routines
                 Specification = specification,
                 Sets = Sets.ToList()
             };
+
+            _messagingService.Send<object, Exercise>(this, Events.AddExercise, exercise);
         }
     }
 }

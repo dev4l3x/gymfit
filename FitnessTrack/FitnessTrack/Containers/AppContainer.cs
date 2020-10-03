@@ -24,6 +24,7 @@ namespace FitnessTrack.Containers
             }).InSingletonScope();
 
             Bind<INavigationService>().To<NavigationService>().InSingletonScope();
+            Bind<IMessagingService>().To<MessagingService>().InSingletonScope();
 
         }
     }

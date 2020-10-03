@@ -21,7 +21,7 @@ namespace FitnessTrack.Persistence
         public AppContext()
         {
             SQLitePCL.Batteries_V2.Init();
-
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

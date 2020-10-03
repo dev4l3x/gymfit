@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:routines="clr-namespace:FitnessTrack.Views.Routines"
              x:Class="FitnessTrack.Views.Routines.AddRoutinePage"
              Style="{StaticResource PageStyle}"
-             BackgroundColor="White">
+             BackgroundColor="{StaticResource Background}"
+             xmlns:locator="clr-namespace:FitnessTrack.Helpers"
+             locator:ViewModelLocator.AutoFindViewModel="True">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -22,7 +24,8 @@
                         CornerRadius="10"
                         Style="{StaticResource ButtonStyle}"
                         IsVisible="false"
-                        x:Name="CreateButton"></Button>
+                        x:Name="CreateButton"
+                        Command="{Binding CreateRoutineCommand}"></Button>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

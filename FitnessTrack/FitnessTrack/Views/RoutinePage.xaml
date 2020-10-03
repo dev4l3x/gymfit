@@ -6,8 +6,25 @@
              xmlns:icons="clr-namespace:FitnessTrack.Icons"
              xmlns:locator="clr-namespace:FitnessTrack.Helpers"
              locator:ViewModelLocator.AutoFindViewModel="True"
-             NavigationPage.HasNavigationBar="False"
-             BackgroundColor="{StaticResource Background}">
+             BackgroundColor="{StaticResource Background}"
+             NavigationPage.HasNavigationBar="True">
+    <NavigationPage.TitleView>
+        <ContentView>
+            <StackLayout Orientation="Horizontal" 
+                     VerticalOptions="Start"
+                         Margin="20, 0, 20, 0">
+                <Label Style="{StaticResource TitleStyle}"
+                               Text="RUTINAS"></Label>
+
+                <Label BackgroundColor="Transparent"
+                    Style="{StaticResource TitleStyle}"
+                    Text="{x:Static icons:SolidIcons.Search}"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                   VerticalTextAlignment="Center"
+                   HorizontalOptions="EndAndExpand"></Label>
+            </StackLayout>
+        </ContentView>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <AbsoluteLayout>
             <CollectionView ItemsSource="{Binding Routines}"
@@ -15,20 +32,6 @@
                             AbsoluteLayout.LayoutFlags="All"
                             ItemSizingStrategy="MeasureFirstItem"
                             >
-                <CollectionView.Header>
-                    <StackLayout Orientation="Horizontal" 
-                     VerticalOptions="Start">
-                        <Label Style="{StaticResource TitleStyle}"
-                               Text="RUTINAS"></Label>
-
-                        <Label BackgroundColor="Transparent"
-                    Style="{StaticResource TitleStyle}"
-                    Text="{x:Static icons:SolidIcons.Search}"
-                    FontFamily="{StaticResource FontAwesomeSolid}"
-                   VerticalTextAlignment="Center"
-                   HorizontalOptions="EndAndExpand"></Label>
-                    </StackLayout>
-                </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <ContentView Padding="0, 20, 0, 10"
@@ -36,8 +39,12 @@
                             <Frame HasShadow="False" 
                                    CornerRadius="10">
                                 <StackLayout>
-                                    <Label Text="{Binding Name}"></Label>
-                                    <Label Text="{Binding Description}"></Label>
+                                    <Label Text="{Binding Name}"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource Secondary}"
+                                           FontSize="16"></Label>
+                                    <Label Text="{Binding Description}"
+                                           TextColor="LightGray"></Label>
                                 </StackLayout>
                             </Frame>
                         </ContentView>

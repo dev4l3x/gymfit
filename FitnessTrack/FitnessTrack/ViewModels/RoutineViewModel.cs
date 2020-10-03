@@ -1,6 +1,8 @@
-﻿using FitnessTrack.Models;
+﻿using FitnessTrack.Configuration;
+using FitnessTrack.Models;
 using FitnessTrack.Persistence.Base;
 using FitnessTrack.Repositories;
+using FitnessTrack.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,6 +15,7 @@ namespace FitnessTrack.ViewModels
     public class RoutineViewModel : BaseViewModel
     {
         private IUnitOfWork _unitOfWork;
+        private IMessagingService _messagingService;
 
         private ObservableCollection<Routine> _routines;
         public ObservableCollection<Routine> Routines
@@ -29,9 +32,14 @@ namespace FitnessTrack.ViewModels
         }
 
 
-        public RoutineViewModel(IUnitOfWork unitOfWork)
+        public RoutineViewModel(IUnitOfWork unitOfWork, IMessagingService messaging)
         {
             _unitOfWork = unitOfWork;
+            _messagingService = messaging;
+            _messagingService.Subscribe<object>(this, Events.AddRoutine, (sender) => {
+                var routin = unitOfWork.RoutineRepository.GetAll();
+                Routines = new ObservableCollection<Routine>(routin);
+            });
             Routines = new ObservableCollection<Routine>();
             var routine = new Routine
             {
@@ -49,7 +57,6 @@ namespace FitnessTrack.ViewModels
 
         private async Task Init()
         {
-            
         }
     }
 }
