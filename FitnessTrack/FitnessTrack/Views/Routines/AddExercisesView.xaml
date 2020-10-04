@@ -8,46 +8,56 @@
     <ContentView.Content>
         <StackLayout>
 
-            <Label Text="¡Añade ejercicios a la rutina!"
+            <StackLayout Padding="20, 10, 20, 10">
+                <Label Text="¡Añade ejercicios a la rutina!"
                    Style="{StaticResource TitleStyle}"
-                       Grid.Row="0"
-                       Grid.ColumnSpan="2"
                    ></Label>
 
-            <Label Text="Añade los ejercicios en la rutina para empezar a llevar un seguimiento sobre los mismos"
+                <Label Text="Añade los ejercicios en la rutina para empezar a llevar un seguimiento sobre los mismos"
                        Style="{StaticResource LightTextStyle}"
-                       Grid.Row="1"
-                       Grid.ColumnSpan="2"
                        ></Label>
 
-            <Frame BackgroundColor="White"
+                <Frame BackgroundColor="White"
                    CornerRadius="10"
                    HasShadow="False"
                    Padding="5">
-                <SearchBar Placeholder="Buscar ejercicio"
+                    <SearchBar Placeholder="Buscar ejercicio"
                        FontAttributes="Italic"
                        sharedTransitions:Transition.Name="searchtransition"
                        Focused="SearchBar_Focused">
-                    <SearchBar.Effects>
-                        <effects:NoUnderlineEffect></effects:NoUnderlineEffect>
-                    </SearchBar.Effects>
-                </SearchBar>
-            </Frame>
+                        <SearchBar.Effects>
+                            <effects:NoUnderlineEffect></effects:NoUnderlineEffect>
+                        </SearchBar.Effects>
+                    </SearchBar>
+                </Frame>
+            </StackLayout>
 
-            <ListView ItemsSource="{Binding Exercises}">
+            <ListView ItemsSource="{Binding Exercises}"
+                      HeightRequest="300"
+                      RowHeight="80">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout BackgroundColor="White">
+                            <StackLayout BackgroundColor="White"
+                                         Padding="20, 10, 20, 10">
                                 <Label Text="{Binding Specification.Name}"
                                    FontAttributes="Bold"
                                    TextColor="{StaticResource Secondary}"
-                                   FontSize="15"></Label>
+                                   FontSize="18"></Label>
+
+                                <Label Text="{Binding SetsString}"
+                                       TextColor="LightGray"></Label>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <Button Text="CREAR"
+                        CornerRadius="10"
+                        Style="{StaticResource ButtonStyle}"
+                        x:Name="CreateButton"
+                        Command="{Binding CreateRoutineCommand}"></Button>
 
         </StackLayout>
     </ContentView.Content>

@@ -25,7 +25,6 @@ namespace FitnessTrack.Views.Routines
                 PageTwo.IsVisible = false;
                 PageOne.IsVisible = true;
                 ContinueButton.IsVisible = true;
-                CreateButton.IsVisible = false;
                 return true;
             }
             else
@@ -40,7 +39,6 @@ namespace FitnessTrack.Views.Routines
             PageTwo.IsVisible = true;
             var but = (Button)sender;
             but.IsVisible = false;
-            CreateButton.IsVisible = true;
         }
     }
 }

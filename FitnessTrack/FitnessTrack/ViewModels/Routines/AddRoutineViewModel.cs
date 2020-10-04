@@ -75,7 +75,7 @@ namespace FitnessTrack.ViewModels.Routines
         public async void OnAddExercise(object sender, Exercise exercise)
         {
             Exercises.Add(exercise);
-            await App.Current.MainPage.Navigation.PopAsync();
+            //await App.Current.MainPage.Navigation.PopAsync();
         }
 
         public async Task CreateRoutine()

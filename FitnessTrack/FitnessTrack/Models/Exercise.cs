@@ -34,6 +34,15 @@ namespace FitnessTrack.Models
         }
         public Routine Routine { get; set; }
         public int Day { get; set; }
+
+        [NotMapped]
+        public string SetsString
+        {
+            get
+            {
+                return SetsWithReps;
+            }
+        }
     }
 
     public class ExerciseSpecification : Entity
