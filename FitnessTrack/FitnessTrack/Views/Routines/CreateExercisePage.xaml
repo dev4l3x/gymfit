@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FitnessTrack.Views.Routines.CreateExercisePage"
              Style="{StaticResource PageStyle}"
-             xmlns:locator="clr-namespace:FitnessTrack.Helpers"
+             xmlns:locator="clr-namespace:FitnessTrack.Helpers" xmlns:effects="clr-namespace:FitnessTrack.Effects" xmlns:customcontrols="clr-namespace:FitnessTrack.CustomControls"
              locator:ViewModelLocator.AutoFindViewModel="True">
     <ContentPage.Content>
         <StackLayout>
@@ -13,36 +13,69 @@
                    Style="{StaticResource LightTextStyle}"></Label>
 
                 <Frame CornerRadius="10"
-                   HasShadow="False">
+                       HasShadow="False"
+                       BackgroundColor="{StaticResource DarkerBackground}">
                     <StackLayout>
-                        <Entry Placeholder="Nombre"
-                               Text="{Binding Name}"></Entry>
-                        <Editor Placeholder="Descripción"
-                            HeightRequest="150"
-                                Text="{Binding Description}"></Editor>
+                        <customcontrols:RoundedEntry 
+                                Placeholder="Nombre"
+                               Text="{Binding Name}"
+                            CornerRadius="10"></customcontrols:RoundedEntry>
+                        
+                        <Frame HasShadow="False"
+                                   Padding="10"
+                                   BackgroundColor="White"
+                                   CornerRadius="10">
+                            <Editor Placeholder="Descripción..."
+                                FontSize="14"
+                                HeightRequest="100"
+                                Grid.Row="3"
+                               Grid.ColumnSpan="2"
+                                Text="{Binding Description}"
+                                    BackgroundColor="White">
+                                <Editor.Effects>
+                                    <effects:NoUnderlineEffect></effects:NoUnderlineEffect>
+                                </Editor.Effects>
+                            </Editor>
+                        </Frame>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Frame HasShadow="False"
+                                   Padding="10, 0, 10, 0"
+                                   BackgroundColor="White"
+                                   CornerRadius="10"
+                           WidthRequest="40"
+                           HorizontalOptions="Start">
+                            <Picker SelectedIndex="{Binding Day}"
+                                HorizontalOptions="Center">
+                                <Picker.Effects>
+                                    <effects:NoUnderlineEffect></effects:NoUnderlineEffect>
+                                </Picker.Effects>
+                                <Picker.Items>
+                                    <x:String>1</x:String>
+                                    <x:String>2</x:String>
+                                    <x:String>3</x:String>
+                                    <x:String>4</x:String>
+                                    <x:String>5</x:String>
+                                    <x:String>6</x:String>
+                                    <x:String>7</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </Frame>
 
 
-                        <Picker SelectedIndex="{Binding Day}">
-                            <Picker.Items>
-                                <x:String>1</x:String>
-                                <x:String>2</x:String>
-                                <x:String>3</x:String>
-                                <x:String>4</x:String>
-                                <x:String>5</x:String>
-                                <x:String>6</x:String>
-                                <x:String>7</x:String>
-                            </Picker.Items>
-                        </Picker>
-
+                        <Button Text="Añadir serie"
+                        Command="{Binding AddNewSetCommand}"
+                                HorizontalOptions="FillAndExpand"
+                                Style="{StaticResource ButtonStyle}"></Button>
                     </StackLayout>
-                </Frame>
-                <Button Text="Añadir serie"
-                        Command="{Binding AddNewSetCommand}"></Button>
-                <ListView x:Name="RepsList"
+                    <ListView x:Name="RepsList"
                           ItemsSource="{Binding Sets}">
 
-                </ListView>
+                    </ListView>
 
+                </StackLayout>
+                </Frame>
+                
                 <Button Text="CREAR EJERCICIO"
                         Style="{StaticResource ButtonStyle}"
                         Command="{Binding CreateExerciseCommand}"></Button>

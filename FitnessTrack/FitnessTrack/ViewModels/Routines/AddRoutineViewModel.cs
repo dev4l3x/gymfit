@@ -72,9 +72,10 @@ namespace FitnessTrack.ViewModels.Routines
             CreateRoutineCommand = new LockCommand(CreateRoutine, true);
         }
 
-        public void OnAddExercise(object sender, Exercise exercise)
+        public async void OnAddExercise(object sender, Exercise exercise)
         {
             Exercises.Add(exercise);
+            await App.Current.MainPage.Navigation.PopAsync();
         }
 
         public async Task CreateRoutine()

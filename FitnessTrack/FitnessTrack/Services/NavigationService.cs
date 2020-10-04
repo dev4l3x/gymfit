@@ -12,6 +12,7 @@ namespace FitnessTrack.Services
     {
         Task DisplayAlertAsync(string title, string message, string ok);
         Task<string> DisplayPromptAndGetResponseAysnc(string title, string message, string accept, string cancel, string placeholder, int maxLenght, Keyboard keyboard);
+        
     }
 
     public class NavigationService : INavigationService

@@ -3,14 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FitnessTrack.Views.Routines.AddExercisesView"
              xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions" 
-             xmlns:effects="clr-namespace:FitnessTrack.Effects">
-  <ContentView.Content>
-        <StackLayout >
+             xmlns:effects="clr-namespace:FitnessTrack.Effects"
+             Padding="0">
+    <ContentView.Content>
+        <StackLayout>
 
             <Label Text="¡Añade ejercicios a la rutina!"
                    Style="{StaticResource TitleStyle}"
                        Grid.Row="0"
-                       Grid.ColumnSpan="2"></Label>
+                       Grid.ColumnSpan="2"
+                   ></Label>
 
             <Label Text="Añade los ejercicios en la rutina para empezar a llevar un seguimiento sobre los mismos"
                        Style="{StaticResource LightTextStyle}"
@@ -32,9 +34,20 @@
                 </SearchBar>
             </Frame>
 
-            <CollectionView ItemsSource="{Binding Exercises}">
-                
-            </CollectionView>
+            <ListView ItemsSource="{Binding Exercises}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="White">
+                                <Label Text="{Binding Specification.Name}"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource Secondary}"
+                                   FontSize="15"></Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
         </StackLayout>
     </ContentView.Content>

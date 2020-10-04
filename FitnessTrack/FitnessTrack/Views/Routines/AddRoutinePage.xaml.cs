@@ -17,6 +17,7 @@ namespace FitnessTrack.Views.Routines
             InitializeComponent();
         }
 
+
         protected override bool OnBackButtonPressed()
         {
             if(PageTwo.IsVisible)

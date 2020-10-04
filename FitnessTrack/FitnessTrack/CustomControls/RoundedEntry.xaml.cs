@@ -58,7 +58,8 @@ namespace FitnessTrack.CustomControls
             propertyName: nameof(Text),
             returnType: typeof(string),
             declaringType: typeof(RoundedEntry),
-            defaultValue: default(string)
+            defaultValue: default(string),
+            defaultBindingMode: BindingMode.TwoWay
         );
 
         public string Text
