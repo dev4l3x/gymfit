@@ -18,6 +18,7 @@ namespace FitnessTrack.ViewModels.Routines
 
         private IMessagingService _messagingService;
         private IUnitOfWork _unitOfWork;
+        private INavigationService _navigationService;
 
         private string _name;
         public string Name
@@ -63,10 +64,11 @@ namespace FitnessTrack.ViewModels.Routines
 
         public ICommand CreateRoutineCommand { get; set; }
 
-        public AddRoutineViewModel(IMessagingService messagingService, IUnitOfWork unit)
+        public AddRoutineViewModel(IMessagingService messagingService, IUnitOfWork unit, INavigationService navigationService)
         {
             _messagingService = messagingService;
             _unitOfWork = unit;
+            _navigationService = navigationService;
             _messagingService.Subscribe<object, Exercise>(this, Events.AddExercise, OnAddExercise);
             Exercises = new ObservableCollection<Exercise>();
             CreateRoutineCommand = new LockCommand(CreateRoutine, true);
@@ -90,6 +92,7 @@ namespace FitnessTrack.ViewModels.Routines
             _unitOfWork.RoutineRepository.Add(routine);
             await _unitOfWork.SaveAsync();
             _messagingService.Send<object>(this, Events.AddRoutine);
+            await _navigationService.PopAsync();
         }
         
     }

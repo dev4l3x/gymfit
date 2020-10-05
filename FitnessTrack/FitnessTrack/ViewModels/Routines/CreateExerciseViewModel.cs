@@ -131,6 +131,7 @@ namespace FitnessTrack.ViewModels.Routines
             };
 
             _messagingService.Send<object, Exercise>(this, Events.AddExercise, exercise);
+            await _navigationService.PopAsync(2);
         }
     }
 }

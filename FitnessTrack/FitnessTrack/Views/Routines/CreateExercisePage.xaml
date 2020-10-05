@@ -3,8 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FitnessTrack.Views.Routines.CreateExercisePage"
              Style="{StaticResource PageStyle}"
-             xmlns:locator="clr-namespace:FitnessTrack.Helpers" xmlns:effects="clr-namespace:FitnessTrack.Effects" xmlns:customcontrols="clr-namespace:FitnessTrack.CustomControls"
-             locator:ViewModelLocator.AutoFindViewModel="True">
+             xmlns:locator="clr-namespace:FitnessTrack.Helpers" 
+             xmlns:effects="clr-namespace:FitnessTrack.Effects" 
+             xmlns:customcontrols="clr-namespace:FitnessTrack.CustomControls"
+             locator:ViewModelLocator.AutoFindViewModel="True"
+             BackgroundColor="{StaticResource Background}">
     <ContentPage.Content>
         <StackLayout>
                 <Label Text="Crear ejercicio"

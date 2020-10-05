@@ -61,6 +61,7 @@
                         Grid.Row="3"
                        Grid.ColumnSpan="2"
                         Text="{Binding Description}"
+                                PlaceholderColor="LightGray"
                             BackgroundColor="White">
                             <Editor.Effects>
                                 <effects:NoUnderlineEffect></effects:NoUnderlineEffect>
