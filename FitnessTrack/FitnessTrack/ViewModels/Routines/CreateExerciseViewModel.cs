@@ -64,8 +64,8 @@ namespace FitnessTrack.ViewModels.Routines
             }
         }
 
-        private ObservableCollection<int> _sets;
-        public ObservableCollection<int> Sets
+        private ObservableCollection<Set> _sets;
+        public ObservableCollection<Set> Sets
         {
             get
             {
@@ -87,7 +87,7 @@ namespace FitnessTrack.ViewModels.Routines
             _unitOfWork = unitOfWork;
             _navigationService = navigationService;
             _messagingService = messagingService;
-            Sets = new ObservableCollection<int>();
+            Sets = new ObservableCollection<Set>();
 
             InitializeComands();
         }
@@ -103,7 +103,7 @@ namespace FitnessTrack.ViewModels.Routines
             var response = await _navigationService.DisplayPromptAndGetResponseAysnc("Nueva serie", "¿De cuantas repeticiones es esta series?", "Añadir", "Cancelar", default, 3, Keyboard.Numeric);
             if(int.TryParse(response, out var value))
             {
-                Sets.Add(value);
+                Sets.Add(new Set { Reps = value });
             }
             else
             {

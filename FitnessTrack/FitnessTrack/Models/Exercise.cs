@@ -12,24 +12,26 @@ namespace FitnessTrack.Models
         private string SetsWithReps { get; set; }
         public ExerciseSpecification Specification { get; set; }
         [NotMapped]
-        public List<int> Sets
+        public List<Set> Sets
         {
             get
             {
-                var sets = new List<int>();
+                var sets = new List<Set>();
                 if(!string.IsNullOrWhiteSpace(SetsWithReps))
                 {
                     var reps = SetsWithReps.Split('-');
                     foreach(var stringRep in reps)
                     {
-                        sets.Add(int.Parse(stringRep));
+                        sets.Add(new Set { Reps = int.Parse(stringRep) });
                     }
                 }
                 return sets;
             }
             set
             {
-                SetsWithReps = string.Join("-", value);
+                var sets = new List<int>();
+                value.ForEach((set) => sets.Add(set.Reps));
+                SetsWithReps = string.Join("-", sets);
             }
         }
         public Routine Routine { get; set; }

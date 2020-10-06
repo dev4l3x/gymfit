@@ -7,7 +7,8 @@
              xmlns:effects="clr-namespace:FitnessTrack.Effects" 
              xmlns:customcontrols="clr-namespace:FitnessTrack.CustomControls"
              locator:ViewModelLocator.AutoFindViewModel="True"
-             BackgroundColor="{StaticResource Background}">
+             BackgroundColor="{StaticResource Background}"
+             xmlns:controls="clr-namespace:FitnessTrack.Controls;assembly=FitnessTrack.CustomControls">
     <ContentPage.Content>
         <StackLayout>
                 <Label Text="Crear ejercicio"
@@ -71,10 +72,17 @@
                                 HorizontalOptions="FillAndExpand"
                                 Style="{StaticResource ButtonStyle}"></Button>
                     </StackLayout>
-                    <ListView x:Name="RepsList"
-                          ItemsSource="{Binding Sets}">
+                    <controls:FullListView x:Name="RepsList"
+                                            ItemsSource="{Binding Sets}">
 
-                    </ListView>
+                        <controls:FullListView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="Red">
+                                    <Label Text="{Binding Reps}"></Label>
+                                </Frame>
+                            </DataTemplate>
+                        </controls:FullListView.ItemTemplate>
+                    </controls:FullListView>
 
                 </StackLayout>
                 </Frame>
