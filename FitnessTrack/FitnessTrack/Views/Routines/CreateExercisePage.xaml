@@ -10,7 +10,8 @@
              BackgroundColor="{StaticResource Background}"
              xmlns:controls="clr-namespace:FitnessTrack.Controls;assembly=FitnessTrack.CustomControls">
     <ContentPage.Content>
-        <StackLayout>
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <StackLayout>
                 <Label Text="Crear ejercicio"
                    Style="{StaticResource TitleStyle}"></Label>
                 <Label Text="Crea un ejercico para incorporarlo posteriormente a tus rutinas"
@@ -24,7 +25,7 @@
                                 Placeholder="Nombre"
                                Text="{Binding Name}"
                             CornerRadius="10"></customcontrols:RoundedEntry>
-                        
+
                         <Frame HasShadow="False"
                                    Padding="10"
                                    BackgroundColor="White"
@@ -42,54 +43,55 @@
                             </Editor>
                         </Frame>
 
-                    <StackLayout Orientation="Horizontal">
-                        <Frame HasShadow="False"
+                        <StackLayout Orientation="Horizontal">
+                            <Frame HasShadow="False"
                                    Padding="10, 0, 10, 0"
                                    BackgroundColor="White"
                                    CornerRadius="10"
                            WidthRequest="40"
                            HorizontalOptions="Start">
-                            <Picker SelectedIndex="{Binding Day}"
+                                <Picker SelectedIndex="{Binding Day}"
                                 HorizontalOptions="Center">
-                                <Picker.Effects>
-                                    <effects:NoUnderlineEffect></effects:NoUnderlineEffect>
-                                </Picker.Effects>
-                                <Picker.Items>
-                                    <x:String>1</x:String>
-                                    <x:String>2</x:String>
-                                    <x:String>3</x:String>
-                                    <x:String>4</x:String>
-                                    <x:String>5</x:String>
-                                    <x:String>6</x:String>
-                                    <x:String>7</x:String>
-                                </Picker.Items>
-                            </Picker>
-                        </Frame>
+                                    <Picker.Effects>
+                                        <effects:NoUnderlineEffect></effects:NoUnderlineEffect>
+                                    </Picker.Effects>
+                                    <Picker.Items>
+                                        <x:String>1</x:String>
+                                        <x:String>2</x:String>
+                                        <x:String>3</x:String>
+                                        <x:String>4</x:String>
+                                        <x:String>5</x:String>
+                                        <x:String>6</x:String>
+                                        <x:String>7</x:String>
+                                    </Picker.Items>
+                                </Picker>
+                            </Frame>
 
 
-                        <Button Text="Añadir serie"
+                            <Button Text="Añadir serie"
                         Command="{Binding AddNewSetCommand}"
                                 HorizontalOptions="FillAndExpand"
                                 Style="{StaticResource ButtonStyle}"></Button>
-                    </StackLayout>
-                    <controls:FullListView x:Name="RepsList"
+                        </StackLayout>
+                        <controls:FullListView x:Name="RepsList"
                                             ItemsSource="{Binding Sets}">
 
-                        <controls:FullListView.ItemTemplate>
-                            <DataTemplate>
-                                <Frame BackgroundColor="Red">
-                                    <Label Text="{Binding Reps}"></Label>
-                                </Frame>
-                            </DataTemplate>
-                        </controls:FullListView.ItemTemplate>
-                    </controls:FullListView>
+                            <controls:FullListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame>
+                                        <Label Text="{Binding Reps}"></Label>
+                                    </Frame>
+                                </DataTemplate>
+                            </controls:FullListView.ItemTemplate>
+                        </controls:FullListView>
 
-                </StackLayout>
+                    </StackLayout>
                 </Frame>
-                
+
                 <Button Text="CREAR EJERCICIO"
                         Style="{StaticResource ButtonStyle}"
                         Command="{Binding CreateExerciseCommand}"></Button>
             </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

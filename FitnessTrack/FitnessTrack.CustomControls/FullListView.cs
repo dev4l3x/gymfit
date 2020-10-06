@@ -43,11 +43,11 @@ namespace FitnessTrack.Controls
         {
             get
             {
-                return (DataTemplate)GetValue(ItemsSourceProperty);
+                return (DataTemplate)GetValue(ItemTemplateProperty);
             }
             set
             {
-                SetValue(ItemsSourceProperty, value);
+                SetValue(ItemTemplateProperty, value);
             }
         }
 
@@ -57,14 +57,12 @@ namespace FitnessTrack.Controls
         {
             Grid = new Grid();
             Content = Grid;
-            ItemsSource = new ObservableCollection<object>();
-            ItemsSource.CollectionChanged += OnItemSourceAddedOrRemoved;
             Initialize();
         }
 
         private void Initialize()
         {
-            if(ItemsSource != null && ItemsSource.Count > 0)
+            if(ItemsSource != null)
             {
                 ConfigureGrid();
                 AddSourceToGrid();
@@ -88,36 +86,51 @@ namespace FitnessTrack.Controls
         }
         private void AddSourceToGrid()
         {
-            foreach(var item in ItemsSource)
+            for (int i = 0; i < ItemsSource.Count; i++)
             {
-                Grid.Children.Add(GetRowView(item));
+                var view = GetRowView(ItemsSource[i]);
+                Grid.SetRow(view, i);
+                Grid.Children.Add(view);
             }
         }
 
         private View GetRowView(object item)
         {
-            if(ItemTemplate is DataTemplateSelector dts)
-            {
-                var template = dts.SelectTemplate(item, this);
-                return (View)template.CreateContent();
-            }
-            return null;
+            var view = (View)ItemTemplate.CreateContent();
+            view.BindingContext = item;
+            return view;
         }
 
         private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var collection = (ObservableCollection<object>)newValue;
-            var previusCollection = (ObservableCollection<object>)oldValue;
-            if(previusCollection != null)
-                previusCollection.CollectionChanged -= OnItemSourceAddedOrRemoved;
-            if(collection != null)
-                collection.CollectionChanged += OnItemSourceAddedOrRemoved;
-
+            var list = (bindable as FullListView);
+            list?.SubscribeForItemsChanged();
+            list?.Initialize();
         }
 
-        private static void OnItemSourceAddedOrRemoved(object sender, NotifyCollectionChangedEventArgs e)
+        private void SubscribeForItemsChanged()
         {
-            
+            if(ItemsSource != null)
+            {
+                ItemsSource.CollectionChanged += OnItemSourceAddedOrRemoved;
+            }
+        }
+
+        private void OnItemSourceAddedOrRemoved(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if(e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach(var item in e.NewItems)
+                {
+                    Grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                    var view = GetRowView(item);
+                    view.Scale = 0;
+                    Grid.SetRow(view, ItemsSource.Count - 1);
+                    Grid.Children.Add(view);
+                    this.InvalidateMeasure();
+                    view.ScaleTo(1, 500, Easing.SinInOut);
+                }
+            }
         }
     }
 }

@@ -64,8 +64,8 @@ namespace FitnessTrack.ViewModels.Routines
             }
         }
 
-        private ObservableCollection<Set> _sets;
-        public ObservableCollection<Set> Sets
+        private ObservableCollection<object> _sets;
+        public ObservableCollection<object> Sets
         {
             get
             {
@@ -87,8 +87,7 @@ namespace FitnessTrack.ViewModels.Routines
             _unitOfWork = unitOfWork;
             _navigationService = navigationService;
             _messagingService = messagingService;
-            Sets = new ObservableCollection<Set>();
-
+            Sets = new ObservableCollection<object>();
             InitializeComands();
         }
 
@@ -126,8 +125,7 @@ namespace FitnessTrack.ViewModels.Routines
             var exercise = new Exercise
             {
                 Day = Day,
-                Specification = specification,
-                Sets = Sets.ToList()
+                Specification = specification
             };
 
             _messagingService.Send<object, Exercise>(this, Events.AddExercise, exercise);
