@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace FitnessTrack.Controls
 {
@@ -116,7 +117,7 @@ namespace FitnessTrack.Controls
             }
         }
 
-        private void OnItemSourceAddedOrRemoved(object sender, NotifyCollectionChangedEventArgs e)
+        private async void OnItemSourceAddedOrRemoved(object sender, NotifyCollectionChangedEventArgs e)
         {
             if(e.Action == NotifyCollectionChangedAction.Add)
             {
@@ -129,6 +130,20 @@ namespace FitnessTrack.Controls
                     Grid.Children.Add(view);
                     this.InvalidateMeasure();
                     view.ScaleTo(1, 500, Easing.SinInOut);
+                }
+            }
+            else if(e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                foreach (var item in e.NewItems)
+                {
+                    Grid.RowDefinitions.Remove(Grid.RowDefinitions.Last());
+                    var viewsToRemove = Grid.Children.Where((view) => view.BindingContext == item);
+                    foreach (var view in viewsToRemove)
+                    {
+                        await view.ScaleTo(0, 500, Easing.SinInOut);
+                        Grid.Children.Remove(view);
+                        this.InvalidateMeasure();
+                    }
                 }
             }
         }

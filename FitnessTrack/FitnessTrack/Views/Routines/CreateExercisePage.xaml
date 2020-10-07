@@ -79,7 +79,11 @@
                             <controls:FullListView.ItemTemplate>
                                 <DataTemplate>
                                     <Frame>
-                                        <Label Text="{Binding Reps}"></Label>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Entry Keyboard="Numeric"></Entry>
+                                            <Label Text="repeticiones"
+                                                   VerticalTextAlignment="Center"></Label>
+                                        </StackLayout>
                                     </Frame>
                                 </DataTemplate>
                             </controls:FullListView.ItemTemplate>
