@@ -13,6 +13,8 @@ namespace FitnessTrack.Controls
     public class FullListView : ContentView
     {
 
+        private DataTemplate _template;
+
         public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
             propertyName: nameof(ItemsSource),
             returnType: typeof(ObservableCollection<object>),
@@ -65,11 +67,25 @@ namespace FitnessTrack.Controls
         {
             if(ItemsSource != null)
             {
+                CreateDataTemplate();
                 ConfigureGrid();
                 AddSourceToGrid();
             }
         }
 
+        private void CreateDataTemplate()
+        {
+            _template = new DataTemplate(() => {
+                var frame = new Frame { HasShadow = false, CornerRadius = 10, HeightRequest = 60, Padding = 10 };
+                var stackLayout = new StackLayout { Orientation = StackOrientation.Horizontal };
+                var entry = new Entry() { Keyboard = Keyboard.Numeric, WidthRequest = 30, MaxLength = 2 };
+                var label = new Label() { Text = "repeticiones", VerticalTextAlignment = TextAlignment.Center };
+                stackLayout.Children.Add(entry);
+                stackLayout.Children.Add(label);
+                frame.Content = stackLayout;
+                return frame;
+            });
+        }
 
         private void ConfigureGrid()
         {
@@ -97,7 +113,7 @@ namespace FitnessTrack.Controls
 
         private View GetRowView(object item)
         {
-            var view = (View)ItemTemplate.CreateContent();
+            var view = (View)_template.CreateContent();
             view.BindingContext = item;
             return view;
         }
