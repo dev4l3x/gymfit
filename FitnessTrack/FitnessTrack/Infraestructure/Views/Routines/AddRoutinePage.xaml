@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:routines="clr-namespace:FitnessTrack.Views.Routines"
+             x:Class="FitnessTrack.Infraestructure.Views.Routines.AddRoutinePage"
+             Style="{StaticResource PageStyle}"
+             BackgroundColor="{StaticResource Background}"
+             xmlns:routines1="clr-namespace:FitnessTrack.Infraestructure.Views.Routines;assembly=FitnessTrack"
+             xmlns:helpers="clr-namespace:FitnessTrack.Infraestructure.Helpers;assembly=FitnessTrack"
+             helpers:ViewModelLocator.AutoFindViewModel="True"
+             Padding="0">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <routines1:RoutineInfoView x:Name="PageOne"
+                                          Padding="20, 10, 20, 10"></routines1:RoutineInfoView>
+
+                <routines1:AddExercisesView IsVisible="False"
+                                          x:Name="PageTwo"></routines1:AddExercisesView>
+
+                <Button Text="CONTINUAR"
+                        CornerRadius="10"
+                        Style="{StaticResource ButtonStyle}"
+                        Clicked="Button_Clicked"
+                        x:Name="ContinueButton"></Button>
+
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

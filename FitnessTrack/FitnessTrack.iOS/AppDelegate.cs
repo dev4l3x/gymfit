@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using FitnessTrack.Domain;
+using FitnessTrack.Infraestructure;
 using Foundation;
 using UIKit;
 

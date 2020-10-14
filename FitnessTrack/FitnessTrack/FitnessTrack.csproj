@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Localization\en\AppLocalization.Designer.cs">
+    <Compile Update="Infraestructure\Localization\en\AppLocalization.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>AppLocalization.resx</DependentUpon>
@@ -35,36 +35,40 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="CustomControls\RoundedEntry.xaml">
+    <EmbeddedResource Update="Infraestructure\CustomControls\RoundedEntry.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Localization\en\AppLocalization.resx">
+    <EmbeddedResource Update="Infraestructure\Localization\en\AppLocalization.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppLocalization.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Styles\Styles.xaml">
+    <EmbeddedResource Update="Infraestructure\Styles\Styles.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Themes\LightTheme.xaml">
+    <EmbeddedResource Update="Infraestructure\Themes\LightTheme.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\RoutinePage.xaml">
+    <EmbeddedResource Update="Infraestructure\Views\RoutinePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Routines\AddExercisesView.xaml">
+    <EmbeddedResource Update="Infraestructure\Views\Routines\AddExercisesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Routines\AddRoutinePage.xaml">
+    <EmbeddedResource Update="Infraestructure\Views\Routines\AddRoutinePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Routines\CreateExercisePage.xaml">
+    <EmbeddedResource Update="Infraestructure\Views\Routines\CreateExercisePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Routines\RoutineInfoView.xaml">
+    <EmbeddedResource Update="Infraestructure\Views\Routines\RoutineInfoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Routines\SearchExercisePage.xaml">
+    <EmbeddedResource Update="Infraestructure\Views\Routines\SearchExercisePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Domain\Containers\" />
   </ItemGroup>
 </Project>

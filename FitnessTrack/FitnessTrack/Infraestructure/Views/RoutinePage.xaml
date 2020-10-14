@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FitnessTrack.Infraestructure.Views.RoutinePage"
+             xmlns:icons1="clr-namespace:FitnessTrack.Infraestructure.Icons;assembly=FitnessTrack"
+             xmlns:helpers="clr-namespace:FitnessTrack.Infraestructure.Helpers;assembly=FitnessTrack"
+             helpers:ViewModelLocator.AutoFindViewModel="True"
+             BackgroundColor="{StaticResource Background}"
+             NavigationPage.HasNavigationBar="False"
+             Padding="0">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         AbsoluteLayout.LayoutFlags="All">
+                <StackLayout Orientation="Horizontal" 
+                             VerticalOptions="Start"
+                            Padding="30, 0, 30, 0"
+                            BackgroundColor="White"
+                             HeightRequest="60">
+                    
+                    <Label Style="{StaticResource TitleStyle}"
+                               Text="RUTINAS"
+                           VerticalOptions="Center"></Label>
+
+                    <Label BackgroundColor="Transparent"
+                    Style="{StaticResource TitleStyle}"
+                    Text="{x:Static icons1:SolidIcons.Search}"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    VerticalTextAlignment="Center"
+                    HorizontalOptions="EndAndExpand"></Label>
+                </StackLayout>
+                <CollectionView ItemsSource="{Binding Routines}"
+                            Margin="30, 10, 30, 10"
+                            ItemSizingStrategy="MeasureFirstItem"
+                            >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <ContentView Padding="0, 20, 0, 10"
+                                     HeightRequest="100">
+                                <Frame HasShadow="False" 
+                                   CornerRadius="10">
+                                    <StackLayout>
+                                        <Label Text="{Binding Name}"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource Secondary}"
+                                           FontSize="16"></Label>
+                                        <Label Text="{Binding Description}"
+                                           TextColor="LightGray"></Label>
+                                    </StackLayout>
+                                </Frame>
+                            </ContentView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+            <Button Text="CREAR"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5, 0.95"
+                    CornerRadius="40"
+                    BackgroundColor="{StaticResource Primary}"
+                    Clicked="Button_Clicked"
+                    TextColor="White"></Button>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

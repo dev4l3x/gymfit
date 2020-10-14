@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:themes="clr-namespace:FitnessTrack.Themes"
+             xmlns:styles="clr-namespace:FitnessTrack.Styles"
+             xmlns:styles1="clr-namespace:FitnessTrack.Infraestructure.Styles;assembly=FitnessTrack"
+             xmlns:themes1="clr-namespace:FitnessTrack.Infraestructure.Themes;assembly=FitnessTrack"
+             x:Class="FitnessTrack.Infraestructure.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles1:Styles></styles1:Styles>
+                <themes1:LightTheme></themes1:LightTheme>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
